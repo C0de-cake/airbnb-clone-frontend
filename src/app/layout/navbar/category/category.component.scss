@@ -1,0 +1,48 @@
+@import "./../../../../assets/scss/airbnb-variables";
+
+.categories {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  overflow-x: scroll;
+  gap: 30px;
+  background-color: $white;
+  .category {
+    cursor: pointer;
+    border-bottom: 2px transparent solid;
+
+    fa-icon {
+      font-size: 1.4rem;
+    }
+
+    .name {
+      text-align: center;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      letter-spacing: 0.25px;
+    }
+
+    .name::before {
+      display: block;
+      content: attr(title);
+      font-weight: bold;
+      height: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
+  }
+
+  .category-activated {
+    border-bottom: 2px $dark solid;
+    font-weight: bold;
+  }
+
+  .category:hover {
+    .name {
+      font-weight: bold;
+    }
+    border-bottom: 2px $border-color solid;
+  }
+}

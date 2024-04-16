@@ -1,0 +1,47 @@
+// ------------- Custom Color variables ------------ //
+$dark: #222;
+$black: #000;
+$white: #fff;
+$border-color: #DDD;
+$secondaryBg: #222;
+$secondaryBorderColor: #B0B0B0;
+$footerBgColor: #F7F7F7;
+
+// ------------- PrimeNG Variables ------------ //
+$primaryColor: #F24B5B;
+$primaryDarkColor: #F04B5F;
+$primaryDarkerColor: #F04B5F;
+$primaryLightColor: #717171;
+
+$highlightTextColor: $primaryDarkerColor;
+$highlightFocusBg: rgba($primaryColor, .24);
+
+$borderRadius: 6px !default;
+
+$textColor: #5B5B5B;
+$fontFamily: "Airbnb Cereal", sans-serif;
+$fontSize: 1rem;
+
+$dialogBorderRadius: 12px;
+
+$linkButtonColor: $dark !default;
+$linkButtonHoverColor: $black;
+$linkButtonTextHoverDecoration: underline;
+$focusOutlineColor: $black;
+$linkButtonFocusShadow: 0 0 0 0.2rem $focusOutlineColor;
+
+$secondaryButtonBg: $secondaryBg !default;
+$secondaryButtonTextColor: $white !default;
+$secondaryButtonBorder: 1px solid $secondaryBorderColor !default;
+$secondaryButtonHoverBg: $black !default;
+$secondaryButtonTextHoverColor: $secondaryButtonTextColor !default;
+$secondaryButtonHoverBorderColor: $black !default;
+$secondaryButtonActiveBg: $black !default;
+$secondaryButtonTextActiveColor: $secondaryButtonTextColor !default;
+$secondaryButtonActiveBorderColor: $black !default;
+$secondaryButtonFocusShadow: 0 0 0 0.2rem #e2e8f0 !default;
+$outlinedButtonBorder: 1px solid $secondaryBorderColor;
+
+$inputBorder: 1px solid #D1D5DC;
+$inputHoverBorderColor: $secondaryBorderColor;
+$inputFocusBorderColor: $secondaryBorderColor;
