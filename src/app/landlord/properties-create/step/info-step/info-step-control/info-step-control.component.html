@@ -1,0 +1,18 @@
+<div class="info mt-5 flex align-items-center justify-content-between">
+  <div>{{ title() }}</div>
+  <div class="controls flex align-items-center">
+    <button [disabled]="value() <= minValue()"
+            [class.p-disabled]="value() <= minValue()"
+            class="p-button p-button-secondary p-ripple p-button-icon-only p-button-rounded p-button-outlined" (click)="onDecrement()">
+      <fa-icon [icon]="'minus'"></fa-icon>
+    </button>
+    <div class="value ml-3 mr-3 text-center">{{value()}}</div>
+    <button class="p-button p-button-secondary p-ripple p-button-icon-only p-button-rounded p-button-outlined"
+            (click)="onIncrement()">
+      <fa-icon [icon]="'plus'"></fa-icon>
+    </button>
+  </div>
+</div>
+@if(separator()){
+  <div class="mt-4 border-top-1 border-gray-200"></div>
+}

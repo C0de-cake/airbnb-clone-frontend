@@ -18,11 +18,14 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "@asymmetrik/ngx-leaflet": "^17.0.0",
     "@fortawesome/angular-fontawesome": "^0.14.1",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "leaflet": "^1.9.4",
+    "leaflet-geosearch": "^3.11.1",
     "primeflex": "^3.3.1",
     "primeng": "^17.13.0",
     "rxjs": "~7.8.0",
@@ -30,6 +33,7 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.11",
     "@angular-devkit/build-angular": "^17.3.1",
     "@angular/cli": "^17.3.1",
     "@angular/compiler-cli": "^17.3.0",

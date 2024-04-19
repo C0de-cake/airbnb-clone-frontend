@@ -1,0 +1,23 @@
+@import "./../../../../../../assets/scss/airbnb-variables";
+
+::ng-deep .autocomplete-airbnb {
+  width: 400px!important;
+}
+
+::ng-deep .country-panel {
+  width: 350px;
+}
+
+::ng-deep .map-location {
+  height: calc(45vh);
+  .leaflet-geosearch-bar {
+    border-radius: 30px!important;
+  }
+
+  .leaflet-control-geosearch {
+    border-radius: 30px;
+    height: 50px;
+    font-family: $fontFamily;
+    font-size: 1rem;
+  }
+}

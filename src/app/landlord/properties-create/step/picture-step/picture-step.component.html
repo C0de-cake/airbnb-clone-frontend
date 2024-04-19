@@ -1,0 +1,26 @@
+<div class="mb-3">
+  <h1 class="mb-1">Add some photos of your house</h1>
+  <h2 class="mt-0">You'll need 5 photos to get started. You can add more later</h2>
+
+  <div class="flex align-items-center justify-content-center mt-3">
+    <input type="file" pInputText id="pictures"
+           placeholder="Pictures"
+           accept=".jpg,.jpeg,.png,.svg"
+           multiple="multiple"
+           (change)="onUploadNewPicture($event.target)">
+  </div>
+</div>
+
+@if (pictures()) {
+  <div class="mt-2 flex flex-wrap w-full h-full">
+    @for (picture of pictures(); track picture.file.name) {
+      <div class="border-1 relative border-transparent border-round-3xl container-picture">
+        <button class="absolute trash-btn p-button" (click)="onTrashPicture(picture)">
+          <fa-icon icon="trash-can"></fa-icon>
+        </button>
+        <div class="border-1 border-transparent border-round-3xl bg-cover bg-no-repeat h-30rem w-full"
+             [style.background-image]="'url(' + picture.urlDisplay + ')'"></div>
+      </div>
+    }
+  </div>
+}

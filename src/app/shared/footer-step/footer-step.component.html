@@ -1,0 +1,22 @@
+<div class="placeholder"></div>
+<div class="controls flex justify-content-between py-3 border-top-1 px-4">
+  @if (currentStep().idPrevious != null) {
+    <button class="p-button p-button-link" (click)="onPrevious()">Back</button>
+  } @else {
+    <div></div>
+  }
+  @if (currentStep().idNext != null) {
+    <button [disabled]="!currentStep().isValid" [class.p-disabled]="!currentStep().isValid"
+            class="p-button p-button-secondary" id="next" (click)="onNext()">Next
+    </button>
+  } @else {
+    <button class="p-button flex align-items-center" id="create-listing"
+            (click)="onFinish()" [disabled]="!isAllStepsValid() || loading()"
+            [class.p-disabled]="!isAllStepsValid() || loading()">
+      <div class="btn-create">{{ labelFinishedBtn() }}</div>
+      @if (loading()) {
+        <fa-icon class="ml-2" icon="circle-notch" animation="spin"></fa-icon>
+      }
+    </button>
+  }
+</div>

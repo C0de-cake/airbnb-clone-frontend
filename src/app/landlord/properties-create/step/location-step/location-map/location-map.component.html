@@ -1,0 +1,17 @@
+<div class="my-4 flex justify-content-center align-items-center">
+  <p-autoComplete
+    [styleClass]="'autocomplete-airbnb'"
+    [panelStyleClass]="'country-panel'"
+    [ngModel]="currentLocation"
+    (onSelect)="onLocationChange($event)"
+    [suggestions]="filteredCountries"
+    (completeMethod)="search($event)"
+    [dropdown]="true"
+    [optionLabel]="formatLabel"
+    [placeholder]="placeholder()"></p-autoComplete>
+</div>
+<div leaflet
+     [leafletOptions]="options"
+     [leafletLayersControl]="layersControl"
+     (leafletMapReady)="onMapReady($event)"
+     class="map-location z-0"></div>

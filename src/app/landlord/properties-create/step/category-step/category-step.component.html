@@ -1,0 +1,16 @@
+<div class="categories flex flex-column align-items-center">
+  <h1>Which of these best describe your place?</h1>
+  <div class="flex flex-wrap align-items-center justify-content-center">
+    @for(categoryToDisplay of categories; track categoryToDisplay.technicalName) {
+      @if(categoryToDisplay.technicalName !== 'ALL') {
+        <div class="card-step-1 cursor-pointer p-4 m-2 border-round-lg
+border-200 hover:border-800 flex flex-column align-items-start"
+        (click)="onSelectCategory(categoryToDisplay.technicalName)"
+        [class.category-selected]="categoryName() == categoryToDisplay.technicalName">
+          <fa-icon class="mb-2" [icon]="categoryToDisplay.icon" size="2x"></fa-icon>
+          <div class="font-bold white-space-nowrap">{{categoryToDisplay.displayName}}</div>
+        </div>
+      }
+    }
+  </div>
+</div>

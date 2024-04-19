@@ -1,0 +1,15 @@
+@import "./../../../assets/scss/airbnb-variables";
+
+.controls {
+  background-color: $white;
+  border-color: $border-color;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  border-radius: 0 0 $dialogBorderRadius $dialogBorderRadius;
+}
+
+.placeholder {
+  height: 70px;
+}
