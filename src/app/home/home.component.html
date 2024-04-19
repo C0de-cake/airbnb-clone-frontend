@@ -1,0 +1,18 @@
+@if(loading) {
+  <div class="flex justify-content-center align-items-center">
+    <fa-icon class="ml-2 text-primary" icon="circle-notch" animation="spin" size="3x"></fa-icon>
+  </div>
+} @else {
+  <div class="listing-grid">
+    @for (listing of listings; track listing.publicId) {
+      <app-card-listing [listing]="listing"></app-card-listing>
+    }
+  </div>
+}
+
+@if(!loading && listings?.length === 0) {
+  <div class="flex flex-column align-items-center justify-content-center h-10rem">
+    <h1>No listing found for this category</h1>
+    <div class="text-xl">You can come back later</div>
+  </div>
+}

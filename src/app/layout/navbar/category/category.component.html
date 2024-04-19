@@ -1,11 +1,13 @@
-<div class="categories pt-3 mx-8">
-  @for (category of categories; track category.technicalName) {
-    @if(category.technicalName !== 'ALL') {
-      <div class="flex flex-column align-items-center pb-3 category"
-      [class.category-activated]="category.activated">
-        <fa-icon class="mb-1" [icon]="category.icon"></fa-icon>
-        <div title="{{category.displayName}}" class="name">{{ category.displayName }}</div>
-      </div>
+@if (isHome) {
+  <div class="categories pt-3 mx-8">
+    @for (category of categories; track category.technicalName) {
+      @if (category.technicalName !== 'ALL') {
+        <div class="flex flex-column align-items-center pb-3 category"
+             (click)="onChangeCategory(category)" [class.category-activated]="category.activated">
+          <fa-icon class="mb-1" [icon]="category.icon"></fa-icon>
+          <div title="{{category.displayName}}" class="name">{{ category.displayName }}</div>
+        </div>
+      }
     }
-  }
-</div>
+  </div>
+}
