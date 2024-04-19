@@ -26,3 +26,18 @@ export interface Description {
 export interface CreatedListing {
   publicId: string
 }
+
+export interface DisplayPicture {
+  file?: string,
+  fileContentType?: string,
+  isCover?: boolean
+}
+
+export interface CardListing {
+  price: PriceVO,
+  location: string,
+  cover: DisplayPicture,
+  bookingCategory: CategoryName,
+  publicId: string,
+  loading: boolean
+}

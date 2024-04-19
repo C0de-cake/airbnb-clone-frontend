@@ -1,0 +1,43 @@
+<div class="card relative cursor-pointer">
+  <div (click)="onClickCard(cardMode() === 'booking' ? bookingListing?.listingPublicId! : cardListing?.publicId!)">
+    <div class="border-1 border-transparent border-round-3xl bg-cover bg-center bg-no-repeat h-24rem w-full"
+         [style.background-image]="'url(' + 'data:' + listing().cover.fileContentType + ';base64,' + listing().cover.file + ')'">
+    </div>
+    <div class="mt-2 font-bold">{{ listing().location }}</div>
+
+    @if (cardMode() === 'booking') {
+      <div>{{ bookingListing?.dates?.startDate | date: "mediumDate" }} -
+        {{ bookingListing?.dates?.endDate | date: "mediumDate" }}
+      </div>
+      <div class="mt-2">
+        <span class="font-bold">{{ bookingListing?.totalPrice?.value | currency }}</span>
+      </div>
+    } @else {
+      <div>{{ categoryService.getCategoryByTechnicalName(cardListing?.bookingCategory!)?.displayName }}</div>
+      <div class="mt-2">
+        <span class="font-bold">{{ cardListing?.price?.value! | currency }}</span>
+      </div>
+    }
+  </div>
+  @if (cardMode() === "landlord") {
+    <button [disabled]="cardListing?.loading" class="absolute trash-btn p-button"
+            (click)="onDeleteListing(cardListing!)">
+      @if (cardListing?.loading) {
+        <fa-icon icon="circle-notch" animation="spin"></fa-icon>
+      } @else {
+        <fa-icon icon="trash-can"></fa-icon>
+      }
+    </button>
+  }
+
+  @if (cardMode() === "booking") {
+    <button [disabled]="bookingListing?.loading" class="absolute trash-btn p-button"
+            (click)="onCancelBooking(bookingListing!)">
+      @if (bookingListing?.loading) {
+        <fa-icon icon="circle-notch" animation="spin"></fa-icon>
+      } @else {
+        <fa-icon icon="trash-can"></fa-icon>
+      }
+    </button>
+  }
+</div>
