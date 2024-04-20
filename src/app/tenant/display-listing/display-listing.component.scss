@@ -1,0 +1,66 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  grid-template-rows: repeat(6, 5vw);
+  grid-gap: 10px;
+
+  .cover {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 7;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+  }
+
+  .gallery-picture-2 {
+    grid-column-start: 5;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+
+  .gallery-picture-3 {
+    grid-column-start: 7;
+    grid-column-end: 9;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    border-top-right-radius: 1.5rem;
+  }
+
+  .gallery-picture-4 {
+    grid-column-start: 5;
+    grid-column-end: 7;
+    grid-row-start: 4;
+    grid-row-end: 7;
+  }
+
+  .gallery-picture-5 {
+    grid-column-start: 7;
+    grid-column-end: 9;
+    grid-row-start: 4;
+    grid-row-end: 7;
+    border-bottom-right-radius: 1.5rem;
+  }
+}
+
+ol {
+  list-style-type: circle;
+  margin-block-start: 0.3em;
+  margin-block-end: 1em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+  unicode-bidi: isolate;
+
+  li {
+    display: inline-block;
+    margin-right: 6px;
+  }
+
+  fa-icon {
+    font-size: 3px;
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+}
