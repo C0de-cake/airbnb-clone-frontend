@@ -1,0 +1,30 @@
+<div class="border-300 border-1 border-round-xl shadow-1 p-4">
+  <span class="text-2xl font-bold">{{ listing().price.value | currency }}</span>
+  <p-calendar class="max-w-full block mt-4"
+              [ngModel]="bookingDates"
+              (ngModelChange)="onDateChange($event)"
+              [minDate]="minDate"
+              [inline]="true"
+              [touchUI]="false"
+              [selectOtherMonths]="true"
+              [disabledDates]="bookedDates"
+  selectionMode="range">
+  </p-calendar>
+  <button class="p-button mt-4 w-full justify-content-center"
+          [disabled]="!validateMakeBooking()"
+          [class.p-disabled]="!validateMakeBooking()"
+          (click)="onNewBooking()">
+    Reserve
+  </button>
+  @if (!this.authService.isAuthenticated()) {
+    <div class="w-full mt-4">
+      <p-message styleClass="w-full" severity="warn"
+                 text="You need to login before making a reservation"></p-message>
+    </div>
+  }
+  <div class="border-1 my-4 w-full border-solid border-200"></div>
+  <div class="total flex justify-content-between font-bold text-lg">
+    <div>Total</div>
+    <div>{{ totalPrice | currency }}</div>
+  </div>
+</div>

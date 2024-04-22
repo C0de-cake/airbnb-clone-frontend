@@ -41,6 +41,7 @@
       <div class="border-1 my-4 w-full border-solid border-200"></div>
       <div>{{ listing.description.description.value }}</div>
     </div>
+    <app-book-date [listingPublicId]="currentPublicId" [listing]="listing"></app-book-date>
   </div>
 }
 
