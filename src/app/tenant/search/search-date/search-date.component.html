@@ -1,0 +1,12 @@
+<div class="flex justify-content-center">
+  <p-calendar class="max-w-full block mt-4"
+              [ngModel]="searchDateRaw"
+              (ngModelChange)="onDateChange($event)"
+              [minDate]="minDate"
+              selectionMode="range"
+              [inline]="true"
+              [touchUI]="false"
+              [selectOtherMonths]="true">
+
+  </p-calendar>
+</div>

@@ -172,7 +172,6 @@ export class PropertiesCreateComponent implements OnDestroy {
   }
 
   isAllStepsValid(): boolean {
-    console.log(this.steps.filter(step => step.isValid).length === this.steps.length)
     return this.steps.filter(step => step.isValid).length === this.steps.length;
   }
 

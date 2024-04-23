@@ -28,7 +28,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.listenRouter();
-    this.currentActivateCategory.activated =false;
+    this.currentActivateCategory.activated = false;
     this.fetchCategories();
   }
 
@@ -43,7 +43,7 @@ export class CategoryComponent implements OnInit {
       .subscribe({
         next: (evt: NavigationEnd) => {
           this.isHome = evt.url.split("?")[0] === "/";
-          if(this.isHome && evt.url.indexOf("?") === -1) {
+          if (this.isHome && evt.url.indexOf("?") === -1) {
             const categoryByTechnicalName = this.categoryService.getCategoryByTechnicalName("ALL");
             this.categoryService.changeCategory(categoryByTechnicalName!);
           }
@@ -57,7 +57,7 @@ export class CategoryComponent implements OnInit {
       .subscribe({
         next: (categoryName: CategoryName) => {
           const category = this.categoryService.getCategoryByTechnicalName(categoryName);
-          if(category) {
+          if (category) {
             this.activateCategory(category);
             this.categoryService.changeCategory(category);
           }
