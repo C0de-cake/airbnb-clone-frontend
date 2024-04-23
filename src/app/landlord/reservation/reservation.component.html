@@ -1,0 +1,21 @@
+<h1>My Reservation</h1>
+<h2>Past and next reservation for your house</h2>
+<div class="listing-grid">
+  @for (reservation of reservationListings; track reservation.bookingPublicId) {
+    <app-card-listing [listing]="reservation" [cardMode]="'booking'"
+                      (cancelBooking)="onCancelReservation($event)"></app-card-listing>
+  }
+</div>
+
+@if (!loading && reservationListings.length === 0) {
+  <div class="flex flex-column align-items-center justify-content-center h-10rem">
+    <h1>No reservation found</h1>
+    <div class="text-xl">It seems that you don't have any reservation yet.</div>
+  </div>
+}
+
+@if (loading) {
+  <div class="flex justify-content-center align-items-center h-10rem">
+    <fa-icon class="ml-2 text-primary" icon="circle-notch" size="3x" animation="spin"></fa-icon>
+  </div>
+}

@@ -30,6 +30,10 @@ export class BookingService {
     = signal(State.Builder<string>().forInit());
   cancelSig = computed(() => this.cancel$());
 
+  private getBookedListingForLandlord$: WritableSignal<State<Array<BookedListing>>>
+    = signal(State.Builder<Array<BookedListing>>().forInit());
+  getBookedListingForLandlordSig = computed(() => this.getBookedListingForLandlord$());
+
   create(newBooking: CreateBooking) {
     this.http.post<boolean>(`${environment.API_URL}/booking/create`, newBooking)
       .subscribe({
@@ -81,17 +85,29 @@ export class BookingService {
       });
   }
 
-  cancel(bookingPublicId: string, listingPublicId: string): void {
-   const params = new HttpParams().set("bookingPublicId", bookingPublicId)
-      .set("listingPublicId", listingPublicId);
-   this.http.delete<string>(`${environment.API_URL}/booking/cancel`, {params})
-     .subscribe({
-       next: canceledPublicId => this.cancel$.set(State.Builder<string>().forSuccess(canceledPublicId)),
-       error: err => this.cancel$.set(State.Builder<string>().forError(err)),
-     });
+  cancel(bookingPublicId: string, listingPublicId: string, byLandlord: boolean): void {
+    const params = new HttpParams()
+      .set("bookingPublicId", bookingPublicId)
+      .set("listingPublicId", listingPublicId)
+      .set("byLandlord", byLandlord);
+    this.http.delete<string>(`${environment.API_URL}/booking/cancel`, {params})
+      .subscribe({
+        next: canceledPublicId => this.cancel$.set(State.Builder<string>().forSuccess(canceledPublicId)),
+        error: err => this.cancel$.set(State.Builder<string>().forError(err)),
+      });
   }
 
   resetCancel(): void {
     this.cancel$.set(State.Builder<string>().forInit());
   }
+
+  getBookedListingForLandlord(): void {
+    this.http.get<Array<BookedListing>>(`${environment.API_URL}/booking/get-booked-listing-for-landlord`)
+      .subscribe({
+        next: bookedListings =>
+          this.getBookedListingForLandlord$.set(State.Builder<Array<BookedListing>>().forSuccess(bookedListings)),
+        error: err => this.getBookedListingForLandlord$.set(State.Builder<Array<BookedListing>>().forError(err)),
+      });
+  }
+
 }
