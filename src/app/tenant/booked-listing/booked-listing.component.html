@@ -1,0 +1,21 @@
+<h1>My Booking</h1>
+<h2>Past and Next booking</h2>
+<div class="listing-grid">
+  @for (bookedListing of bookedListings; track bookedListing.bookingPublicId) {
+    <app-card-listing [listing]="bookedListing" [cardMode]="'booking'"
+                      (cancelBooking)="onCancelBooking($event)"></app-card-listing>
+  }
+</div>
+
+@if (!loading && bookedListings.length === 0) {
+  <div class="flex flex-column align-items-center justify-content-center h-10rem">
+    <h1>No booking found</h1>
+    <div class="text-xl">It seems that you don't have any booking yet.</div>
+  </div>
+}
+
+@if (loading) {
+  <div class="flex justify-content-center align-items-center h-10rem">
+    <fa-icon class="ml-2 text-primary" icon="circle-notch" size="3x" animation="spin"></fa-icon>
+  </div>
+}
