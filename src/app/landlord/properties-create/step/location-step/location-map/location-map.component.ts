@@ -6,7 +6,7 @@ import {CountryService} from "../country.service";
 import {ToastService} from "../../../../../layout/toast.service";
 import {OpenStreetMapProvider} from "leaflet-geosearch";
 import {Country} from "../country.model";
-import L, {circle, latLng, polygon, tileLayer} from "leaflet";
+import L, {circle, Icon, icon, latLng, polygon, tileLayer} from "leaflet";
 import {filter} from "rxjs";
 
 @Component({
@@ -105,7 +105,15 @@ export class LocationMapComponent {
           if (results && results.length > 0) {
             const firstResult = results[0];
             this.map!.setView(new L.LatLng(firstResult.y, firstResult.x), 13);
-            L.marker([firstResult.y, firstResult.x])
+            L.marker([firstResult.y, firstResult.x],
+              {
+                icon: icon({
+                  ...Icon.Default.prototype.options,
+                  iconUrl: "assets/marker-icon.png",
+                  iconRetinaUrl: "assets/marker-icon-2x.png",
+                  shadowUrl: "assets/marker-shadow.png"
+                })
+              })
               .addTo(this.map!)
               .bindPopup(firstResult.label)
               .openPopup();

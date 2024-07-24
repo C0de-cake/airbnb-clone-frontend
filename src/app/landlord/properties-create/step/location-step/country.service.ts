@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Country} from "./country.model";
 import {State} from "../../../../core/model/state.model";
 import {catchError, map, Observable, of, shareReplay, tap} from "rxjs";
+import {environment} from "../../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class CountryService {
   }
 
   initFetchGetAllCountries(): void {
-    this.fetchCountry$ = this.http.get<Array<Country>>("/assets/countries.json")
+    this.fetchCountry$ = this.http.get<Array<Country>>(`${environment.BACKEND_URL}/assets/countries.json`)
       .pipe(
         tap(countries =>
           this.countries$.set(State.Builder<Array<Country>>().forSuccess(countries))),

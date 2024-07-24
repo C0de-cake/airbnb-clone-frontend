@@ -45,7 +45,7 @@ export class PropertiesCreateComponent implements OnDestroy {
   dialogDynamicRef = inject(DynamicDialogRef);
   listingService = inject(LandlordListingService);
   toastService = inject(ToastService);
-  userService = inject(AuthService);
+  authService = inject(AuthService);
   router = inject(Router);
 
   steps: Step[] = [
@@ -125,7 +125,7 @@ export class PropertiesCreateComponent implements OnDestroy {
 
   listenFetchUser() {
     effect(() => {
-      if (this.userService.fetchUser().status === "OK"
+      if (this.authService.fetchUser().status === "OK"
         && this.listingService.createSig().status === "OK") {
         this.router.navigate(["landlord", "properties"]);
       }
@@ -149,7 +149,7 @@ export class PropertiesCreateComponent implements OnDestroy {
       severity: "success", summary: "Success", detail: "Listing created successfully.",
     });
     this.dialogDynamicRef.close(createdListingState.value?.publicId);
-    this.userService.fetch(true);
+    this.authService.renewAccessToken();
   }
 
   private onCreateError() {

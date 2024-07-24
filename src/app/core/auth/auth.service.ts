@@ -1,10 +1,11 @@
 import {computed, inject, Injectable, signal, WritableSignal} from '@angular/core';
 import {HttpClient, HttpParams, HttpStatusCode} from "@angular/common/http";
 import {Location} from "@angular/common";
-import {Observable} from "rxjs";
+import {filter, Observable, switchMap} from "rxjs";
 import {State} from "../model/state.model";
 import {User} from "../model/user.model";
 import {environment} from "../../../environments/environment";
+import {AuthService as Auth0Service} from "@auth0/auth0-angular";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,11 @@ export class AuthService {
 
   location = inject(Location);
 
+  auth0Service = inject(Auth0Service);
+
   notConnected = "NOT_CONNECTED";
+
+  accessToken: string | undefined;
 
   private fetchUser$: WritableSignal<State<User>> =
     signal(State.Builder<User>().forSuccess({email: this.notConnected}));
@@ -36,18 +41,29 @@ export class AuthService {
   }
 
   login(): void {
-    location.href = `${location.origin}${this.location.prepareExternalUrl("oauth2/authorization/okta")}`;
+    this.auth0Service.loginWithRedirect();
+  }
+
+  renewAccessToken(): void {
+   this.auth0Service.getAccessTokenSilently({cacheMode: "off"})
+     .subscribe(token => {
+       this.accessToken = token;
+       this.fetch(true);
+     });
+  }
+
+  initAuthentication(): void {
+    this.auth0Service.isAuthenticated$.pipe(
+      filter(isLoggedIn => isLoggedIn),
+      switchMap(() => this.auth0Service.getAccessTokenSilently()),
+    ).subscribe(token => {
+      this.accessToken = token;
+      this.fetch(false);
+    });
   }
 
   logout(): void {
-    this.http.post(`${environment.API_URL}/auth/logout`, {})
-      .subscribe({
-        next: (response: any) => {
-          this.fetchUser$.set(State.Builder<User>()
-            .forSuccess({email: this.notConnected}));
-          location.href = response.logoutUrl
-        }
-      })
+    this.auth0Service.logout();
   }
 
   isAuthenticated(): boolean {

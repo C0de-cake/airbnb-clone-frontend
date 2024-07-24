@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {RouterOutlet} from '@angular/router';
 import {ButtonModule} from "primeng/button";
 import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {fontAwesomeIcons} from "./shared/font-awesome-icons";
@@ -8,6 +8,7 @@ import {FooterComponent} from "./layout/footer/footer.component";
 import {ToastModule} from "primeng/toast";
 import {ToastService} from "./layout/toast.service";
 import {MessageService} from "primeng/api";
+import {AuthService} from "./core/auth/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -23,10 +24,12 @@ export class AppComponent implements OnInit {
   isListingView = true;
   toastService = inject(ToastService);
   messageService = inject(MessageService);
+  authService = inject(AuthService);
 
   ngOnInit(): void {
     this.initFontAwesome();
     this.listenToastService();
+    this.authService.initAuthentication();
   }
 
   private initFontAwesome() {
